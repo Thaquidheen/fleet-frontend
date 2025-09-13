@@ -1,0 +1,80 @@
+{
+  "folders": [
+    {
+      "name": "🏠 Root",
+      "path": "."
+    },
+    {
+      "name": "📱 Admin Dashboard",
+      "path": "./apps/admin-dashboard"
+    },
+    {
+      "name": "🚀 Operations Dashboard",
+      "path": "./apps/operations-dashboard"
+    },
+    {
+      "name": "📱 Driver Mobile",
+      "path": "./apps/driver-mobile"
+    },
+    {
+      "name": "📦 Shared Types",
+      "path": "./packages/shared-types"
+    },
+    {
+      "name": "🔌 API Client",
+      "path": "./packages/api-client"
+    },
+    {
+      "name": "🎨 Shared Components",
+      "path": "./packages/shared-components"
+    },
+    {
+      "name": "⚙️ Shared Utils",
+      "path": "./packages/shared-utils"
+    }
+  ],
+  "settings": {
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true
+    },
+    "eslint.workingDirectories": [
+      "./apps/admin-dashboard",
+      "./apps/operations-dashboard",
+      "./packages/shared-types",
+      "./packages/api-client",
+      "./packages/shared-components",
+      "./packages/shared-utils"
+    ],
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/.next": true,
+      "**/coverage": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/dist/**": true,
+      "**/build/**": true,
+      "**/.next/**": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "dsznajder.es7-react-js-snippets",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "formulahendry.auto-rename-tag",
+      "eamodio.gitlens",
+      "rangav.vscode-thunder-client",
+      "pkief.material-icon-theme"
+    ]
+  }
+}

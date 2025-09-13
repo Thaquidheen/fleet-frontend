@@ -1,0 +1,10 @@
+{
+  "name": "@fleet/shared-components",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "echo 'Building components'",
+    "dev": "echo 'Watching components'"
+  }
+}

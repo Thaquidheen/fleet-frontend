@@ -1,0 +1,15 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "Fleet Dev": {
+      "path": "/bin/bash",
+      "args": ["-c", "cd ${workspaceFolder} && ./scripts/dev.sh"]
+    }
+  },
+  "terminal.integrated.profiles.windows": {
+    "Fleet Dev": {
+      "path": "C:\\Windows\\System32\\cmd.exe",
+      "args": ["/c", "cd ${workspaceFolder} && .\\scripts\\dev.bat"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "Fleet Dev"
+}
