@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  # Backend services (assumed to be running separately)
+  # Frontend development environment
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"  # Admin Dashboard
+      - "3001:3001"  # Operations Dashboard
+      - "6006:6006"  # Storybook
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:8080
+    command: npm run dev

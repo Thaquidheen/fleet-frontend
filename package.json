@@ -1,29 +1,85 @@
 {
-  "name": "fleet-management-frontend",
+  "name": "avl-frontend",
   "version": "1.0.0",
   "private": true,
+  "description": "AVL Fleet Management Frontend - Monorepo",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "npm install --workspaces",
-    "build": "lerna run build",
-    "dev": "lerna run dev --parallel",
-    "test": "lerna run test",
-    "lint": "lerna run lint",
-    "clean": "lerna clean -y && rm -rf node_modules"
+    "dev": "concurrently \"npm run dev:admin\" \"npm run dev:operations\"",
+    "dev:admin": "cd apps/admin-dashboard && npm run dev",
+    "dev:operations": "cd apps/operations-dashboard && npm run dev",
+    "dev:mobile": "cd apps/driver-mobile && npm run start",
+    "dev:components": "cd packages/shared-components && npm run dev",
+
+    "build": "lerna run build --stream",
+    "build:admin": "cd apps/admin-dashboard && npm run build",
+    "build:operations": "cd apps/operations-dashboard && npm run build",
+    "build:mobile:android": "cd apps/driver-mobile && npm run build:android",
+    "build:mobile:ios": "cd apps/driver-mobile && npm run build:ios",
+    "build:components": "cd packages/shared-components && npm run build",
+
+    "test": "lerna run test --stream",
+    "test:coverage": "lerna run test:coverage",
+    "test:e2e": "playwright test",
+
+    "lint": "lerna run lint --stream",
+    "lint:fix": "lerna run lint:fix --stream",
+    "type-check": "lerna run type-check --stream",
+
+    "clean": "lerna clean --yes && lerna run clean --stream",
+    "reset": "npm run clean && npm install && lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
+
+    "release": "lerna version && lerna publish",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release-packages": "changeset publish",
+
+    "deploy:dev": "npm run build && docker-compose -f docker-compose.dev.yml up -d",
+    "deploy:prod": "npm run build && docker-compose -f docker-compose.prod.yml up -d",
+
+    "storybook": "cd packages/shared-components && npm run storybook",
+    "build-storybook": "cd packages/shared-components && npm run build-storybook"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "concurrently": "^8.2.0",
-    "eslint": "^8.55.0",
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.2",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.8.0",
+    "concurrently": "^8.2.2",
     "husky": "^8.0.3",
-    "lerna": "^8.2.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
-    "typescript": "^5.3.2"
+    "lerna": "^7.4.2",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
   },
-  "dependencies": {}
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/avl-frontend.git"
+  },
+  "author": "Your Team",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check && npm run test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
 }

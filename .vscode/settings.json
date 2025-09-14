@@ -8,8 +8,8 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
   },
   "editor.rulers": [80, 120],
   "editor.wordWrap": "wordWrapColumn",
@@ -53,7 +53,7 @@
     "./apps/admin-dashboard",
     "./apps/operations-dashboard",
     "./packages/shared-types",
-    "./packages/api-client", 
+    "./packages/api-client",
     "./packages/shared-components",
     "./packages/shared-utils"
   ],
