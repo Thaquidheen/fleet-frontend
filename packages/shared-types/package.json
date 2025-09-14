@@ -1,11 +1,14 @@
 {
-  "name": "@avl/shared-types",
+  "name": "@fleet/shared-types",
   "version": "1.0.0",
   "description": "Shared TypeScript definitions for AVL Fleet Management System",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
@@ -22,5 +25,8 @@
   },
   "peerDependencies": {
     "typescript": ">=4.7.0"
+  },
+  "dependencies": {
+    "typescript": "^5.9.2"
   }
 }

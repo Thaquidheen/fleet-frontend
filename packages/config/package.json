@@ -1,0 +1,40 @@
+{
+  "name": "@fleet/config",
+  "version": "1.0.0",
+  "description": "Shared configuration for AVL Fleet Management",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "dev": "rollup -c -w",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.5",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.1.4",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/avl-frontend.git",
+    "directory": "packages/config"
+  },
+  "keywords": [
+    "config",
+    "constants",
+    "environment"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

@@ -1,8 +1,8 @@
+import { UserRole } from '@fleet/shared-types';
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
 import { Loading } from '../ui/Loading';
-import { UserRole } from '@avl/shared-types';
+import { useAuth } from './AuthProvider';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -38,23 +38,22 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 };
 
 // packages/shared-components/src/auth/UserProfile.tsx
-import React, { useState } from 'react';
 import {
-  Avatar,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Typography,
-  Box,
-} from '@mui/material';
-import {
+  Logout as LogoutIcon,
   Person as PersonIcon,
   Settings as SettingsIcon,
-  Logout as LogoutIcon,
 } from '@mui/icons-material';
-import { useAuth } from './AuthProvider';
+import {
+  Avatar,
+  Box,
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
 
 export const UserProfile: React.FC = () => {
   const { user, logout } = useAuth();
@@ -155,7 +154,7 @@ export const UserProfile: React.FC = () => {
 };
 
 // Export all auth components
-export * from './LoginForm';
 export * from './AuthProvider';
+export * from './LoginForm';
 export * from './ProtectedRoute';
 // export * from './UserProfile';

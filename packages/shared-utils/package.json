@@ -1,13 +1,44 @@
 {
   "name": "@fleet/shared-utils",
   "version": "1.0.0",
+  "description": "Shared utility functions for AVL Fleet Management",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "dev": "rollup -c -w",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0"
   },
   "devDependencies": {
-    "typescript": "^5.3.2"
+    "@rollup/plugin-typescript": "^11.1.5",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.1.4",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/avl-frontend.git",
+    "directory": "packages/shared-utils"
+  },
+  "keywords": [
+    "utils",
+    "helpers",
+    "utilities",
+    "typescript"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "restricted"
   }
 }

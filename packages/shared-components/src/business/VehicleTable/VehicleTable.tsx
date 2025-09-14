@@ -1,8 +1,8 @@
-import React from 'react';
+import { Vehicle, VehicleStatus } from '@fleet/shared-types';
+import { Delete, Edit, LocationOn } from '@mui/icons-material';
+import { Avatar, Chip, IconButton } from '@mui/material';
 import { ColumnDef } from '@tanstack/react-table';
-import { Chip, Avatar, IconButton } from '@mui/material';
-import { Edit, Delete, LocationOn } from '@mui/icons-material';
-import { Vehicle, VehicleStatus } from '@avl/shared-types';
+import React from 'react';
 import { DataTable } from '../ui/DataTable';
 
 interface VehicleTableProps {
@@ -16,11 +16,16 @@ interface VehicleTableProps {
 
 const getStatusColor = (status: VehicleStatus) => {
   switch (status) {
-    case 'ACTIVE': return 'success';
-    case 'INACTIVE': return 'default';
-    case 'MAINTENANCE': return 'warning';
-    case 'OUT_OF_SERVICE': return 'error';
-    default: return 'default';
+    case 'ACTIVE':
+      return 'success';
+    case 'INACTIVE':
+      return 'default';
+    case 'MAINTENANCE':
+      return 'warning';
+    case 'OUT_OF_SERVICE':
+      return 'error';
+    default:
+      return 'default';
   }
 };
 
@@ -41,9 +46,7 @@ export const VehicleTable: React.FC<VehicleTableProps> = ({
           <Avatar sx={{ width: 32, height: 32, bgcolor: 'primary.main' }}>
             {row.original.registrationNumber.charAt(0)}
           </Avatar>
-          <Typography fontWeight={500}>
-            {row.original.registrationNumber}
-          </Typography>
+          <Typography fontWeight={500}>{row.original.registrationNumber}</Typography>
         </Box>
       ),
       size: 200,
@@ -65,9 +68,7 @@ export const VehicleTable: React.FC<VehicleTableProps> = ({
     {
       accessorKey: 'type',
       header: 'Type',
-      cell: ({ row }) => (
-        <Chip label={row.original.type} size="small" variant="outlined" />
-      ),
+      cell: ({ row }) => <Chip label={row.original.type} size="small" variant="outlined" />,
     },
     {
       accessorKey: 'status',

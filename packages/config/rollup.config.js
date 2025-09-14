@@ -13,6 +13,5 @@ export default {
       declarationDir: 'dist',
       rootDir: 'src'
     })
-  ],
-  external: ['date-fns']
+  ]
 };

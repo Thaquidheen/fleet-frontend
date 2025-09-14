@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { User, LoginRequest, LoginResponse } from '@avl/shared-types';
-import { AVLApiClient } from '@avl/api-client';
+import { AVLApiClient } from '@fleet/api-client';
+import { LoginRequest, User } from '@fleet/shared-types';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 // Auth State
 interface AuthState {
@@ -180,11 +180,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, apiClient 
     clearError,
   };
 
-  return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
 
 // Auth Hook

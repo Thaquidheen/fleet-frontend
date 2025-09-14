@@ -1,6 +1,6 @@
+import { ApiResponse } from '@fleet/shared-types';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axiosRetry from 'axios-retry';
-import { ApiResponse } from '@avl/shared-types';
 
 export interface ApiClientConfig {
   baseURL: string;
@@ -28,9 +28,10 @@ export class BaseApiClient {
     axiosRetry(this.client, {
       retries: config.retryAttempts || 3,
       retryDelay: axiosRetry.exponentialDelay,
-      retryCondition: (error) => {
-        return axiosRetry.isNetworkOrIdempotentRequestError(error) ||
-               error.response?.status === 429;
+      retryCondition: error => {
+        return (
+          axiosRetry.isNetworkOrIdempotentRequestError(error) || error.response?.status === 429
+        );
       },
     });
 
@@ -40,20 +41,20 @@ export class BaseApiClient {
   private setupInterceptors(): void {
     // Request interceptor for auth token
     this.client.interceptors.request.use(
-      (config) => {
+      config => {
         const token = this.tokenStorage.getToken();
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     // Response interceptor for token refresh
     this.client.interceptors.response.use(
-      (response) => response,
-      async (error) => {
+      response => response,
+      async error => {
         const originalRequest = error.config;
 
         if (error.response?.status === 401 && !originalRequest._retry) {
@@ -82,9 +83,11 @@ export class BaseApiClient {
     );
   }
 
-  private async refreshAccessToken(refreshToken: string): Promise<{ token: string; refreshToken: string }> {
+  private async refreshAccessToken(
+    refreshToken: string
+  ): Promise<{ token: string; refreshToken: string }> {
     const response = await axios.post(`${this.client.defaults.baseURL}/auth/refresh`, {
-      refreshToken
+      refreshToken,
     });
     return response.data.data;
   }
@@ -94,7 +97,7 @@ export class BaseApiClient {
       success: true,
       data: response.data.data || response.data,
       message: response.data.message,
-      meta: response.data.meta
+      meta: response.data.meta,
     };
   }
 
@@ -104,17 +107,29 @@ export class BaseApiClient {
     return this.normalizeResponse(response);
   }
 
-  async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.post(url, data, config);
     return this.normalizeResponse(response);
   }
 
-  async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.put(url, data, config);
     return this.normalizeResponse(response);
   }
 
-  async patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async patch<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.patch(url, data, config);
     return this.normalizeResponse(response);
   }
@@ -142,7 +157,7 @@ export class BaseApiClient {
 
     const response = await this.client.post(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
-      onUploadProgress: (progressEvent) => {
+      onUploadProgress: progressEvent => {
         if (onProgress && progressEvent.total) {
           const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           onProgress(progress);
@@ -182,7 +197,7 @@ class TokenStorage {
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
 
     if (expiresIn) {
-      const expiryTime = Date.now() + (expiresIn * 1000);
+      const expiryTime = Date.now() + expiresIn * 1000;
       localStorage.setItem(this.TOKEN_EXPIRY_KEY, expiryTime.toString());
     }
   }

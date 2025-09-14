@@ -2,8 +2,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapping: {
-    '^@avl/shared-types': '<rootDir>/../shared-types/src',
-    '^@avl/api-client': '<rootDir>/../api-client/src',
+    '^@fleet/shared-types': '<rootDir>/../shared-types/src',
+    '^@fleet/api-client': '<rootDir>/../api-client/src',
   },
   transform: {
     '^.+\\.(ts|tsx): 'ts-jest',

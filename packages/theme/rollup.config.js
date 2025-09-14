@@ -14,5 +14,5 @@ export default {
       rootDir: 'src'
     })
   ],
-  external: ['date-fns']
+  external: ['@mui/material', 'react']
 };

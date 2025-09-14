@@ -1,5 +1,11 @@
+import {
+  ApiResponse,
+  PaginatedResponse,
+  Vehicle,
+  VehicleStatus,
+  VehicleType,
+} from '@fleet/shared-types';
 import { BaseApiClient } from '../client/base-client';
-import { ApiResponse, Vehicle, VehicleStatus, VehicleType, PaginatedResponse } from '@avl/shared-types';
 
 export class VehicleService extends BaseApiClient {
   constructor(config: any) {

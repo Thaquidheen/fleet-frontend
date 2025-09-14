@@ -1,5 +1,13 @@
+import {
+  ApiResponse,
+  LoginRequest,
+  LoginResponse,
+  PaginatedResponse,
+  User,
+  UserRole,
+  UserStatus,
+} from '@fleet/shared-types';
 import { BaseApiClient } from '../client/base-client';
-import { ApiResponse, User, LoginRequest, LoginResponse, UserRole, UserStatus, PaginatedResponse } from '@avl/shared-types';
 
 export class UserService extends BaseApiClient {
   constructor(config: any) {
@@ -58,7 +66,10 @@ export class UserService extends BaseApiClient {
     return this.put<User>('/profile', profileData);
   }
 
-  async changePassword(data: { currentPassword: string; newPassword: string }): Promise<ApiResponse<void>> {
+  async changePassword(data: {
+    currentPassword: string;
+    newPassword: string;
+  }): Promise<ApiResponse<void>> {
     return this.post<void>('/profile/change-password', data);
   }
 
@@ -67,15 +78,21 @@ export class UserService extends BaseApiClient {
   }
 
   // Bulk operations
-  async bulkCreateUsers(users: Partial<User>[]): Promise<ApiResponse<{ created: number; failed: number; errors?: string[] }>> {
+  async bulkCreateUsers(
+    users: Partial<User>[]
+  ): Promise<ApiResponse<{ created: number; failed: number; errors?: string[] }>> {
     return this.post('/users/bulk', { users });
   }
 
-  async bulkUpdateUsers(updates: { id: string; data: Partial<User> }[]): Promise<ApiResponse<{ updated: number; failed: number }>> {
+  async bulkUpdateUsers(
+    updates: { id: string; data: Partial<User> }[]
+  ): Promise<ApiResponse<{ updated: number; failed: number }>> {
     return this.put('/users/bulk', { updates });
   }
 
-  async bulkDeleteUsers(userIds: string[]): Promise<ApiResponse<{ deleted: number; failed: number }>> {
+  async bulkDeleteUsers(
+    userIds: string[]
+  ): Promise<ApiResponse<{ deleted: number; failed: number }>> {
     return this.delete('/users/bulk', { data: { userIds } });
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@avl/api-client",
+  "name": "@fleet/api-client",
   "version": "1.0.0",
   "description": "API client for AVL Fleet Management System - 8 Microservices",
   "main": "dist/index.js",
@@ -35,7 +35,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@avl/shared-types": "^1.0.0"
+    "@fleet/shared-types": "^1.0.0"
   },
   "repository": {
     "type": "git",

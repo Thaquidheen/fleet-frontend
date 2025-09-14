@@ -1,22 +1,20 @@
-
-
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { LoginRequest } from '@fleet/shared-types';
+import { Email, Lock } from '@mui/icons-material';
 import {
+  Alert,
+  Box,
   Card,
   CardContent,
-  Box,
-  Typography,
-  Alert,
-  FormControlLabel,
   Checkbox,
+  FormControlLabel,
   Link,
+  Typography,
 } from '@mui/material';
-import { Email, Lock } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
-import { LoginRequest } from '@avl/shared-types';
 
 const LoginCard = styled(Card)(({ theme }) => ({
   maxWidth: 400,
@@ -155,19 +153,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               control={control}
               render={({ field: { value, onChange } }) => (
                 <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={value}
-                      onChange={onChange}
-                      disabled={loading}
-                    />
-                  }
+                  control={<Checkbox checked={value} onChange={onChange} disabled={loading} />}
                   label="Remember me"
                 />
               )}
             />
 
-            <Link href="#" variant="body2" onClick={(e) => e.preventDefault()}>
+            <Link href="#" variant="body2" onClick={e => e.preventDefault()}>
               Forgot password?
             </Link>
           </Box>
@@ -187,7 +179,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         <Box mt={2} textAlign="center">
           <Typography variant="body2" color="text.secondary">
             Don't have an account?{' '}
-            <Link href="#" onClick={(e) => e.preventDefault()}>
+            <Link href="#" onClick={e => e.preventDefault()}>
               Contact your administrator
             </Link>
           </Typography>

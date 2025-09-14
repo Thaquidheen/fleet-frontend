@@ -1,5 +1,5 @@
+import { ApiResponse, Company, CompanyStatus, PaginatedResponse } from '@fleet/shared-types';
 import { BaseApiClient } from '../client/base-client';
-import { ApiResponse, Company, CompanyStatus, PaginatedResponse } from '@avl/shared-types';
 
 export class CompanyService extends BaseApiClient {
   constructor(config: any) {
